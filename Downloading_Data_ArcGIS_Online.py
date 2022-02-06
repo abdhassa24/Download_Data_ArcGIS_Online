@@ -18,7 +18,7 @@ start_time = time.monotonic()
 
 gis = arcgis.GIS("organization url", "username", "password") #Set up a connection by providing your organization url, username and password
 
-arcpy.env.workspace = "SDE database connection"  #Set workspace to the sde database
+arcpy.env.workspace = "SDE Database connection"  #Set workspace to the sde database
 
 def downloaddata(outputFolder,boolean,item_id, filegdb): # This is a function that takes three parameters
     AGOLitem = gis.content.get(item_id)  #Retrieve item id from my contents
@@ -72,7 +72,7 @@ rename_file("output folder name","new name of file gdb that was downloaded")
 
 
 def truncatedrows(rows):
-     edit = arcpy.da.Editor(r"SDE Database connection")
+     edit = arcpy.da.Editor("SDE Database connection")
 
      edit.startEditing(False, True) 
 
@@ -90,7 +90,7 @@ def importsde(fc,floodwatch): #function to append the updated rows to the variou
     
   
 #calling the function with the parameters 
-importsde("ArcGIS Online Feature Class","SDE Feature Class")
+importsde("ArcGIS Online Feature Class downloaded as file gdb","SDE Feature Class")
 
 #function to change the timezone from utc to the local timezone
 def timezone(table,timefield,timezone,outputtime,outputzone,inputdst,outputdst): 
